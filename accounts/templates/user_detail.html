@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}User{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'change' user_obj.pk %}">Update</a></li>
+    <li><a href="#">Change password</a></li>
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+    <h1>User profile {{ user_obj.get_full_name|default:user_obj.username }}</h1>
+    {% if user_obj.profile.avatar %}
+        <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
+    {% endif %}
+    <p>Username: {{ user_obj.username }}</p>
+    <p>First name: {{ user_obj.first_name }}</p>
+    <p>Last name: {{ user_obj.last_name }}</p>
+    <p>Email: {{ user_obj.email }}</p>
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% csrf_token %}
+<div class="form_row">
+    {% if errors.title %}
+    <p class="error">{{ errors.title }}</p>
+    {% endif %}
+            <label for="title">Title: </label>
+            <input id="title" name="title" type="text" value="{{ product.title }}">
+        </div>
+        <div class="form_row">
+            <label for="text">Text: </label>
+            <textarea name="text" id="text" cols="40" rows="10">{{ product.description }}</textarea>
+        </div>
+
+            <div class="form_row">
+            <label for="category">Category: </label>
+            <select name="category" id="category">
+                {% for choice in choices %}
+                    {% if product.category == choice.0 %}
+                        <option value="{{ choice.0 }}" selected>{{ choice.1 }}</option>
+                     {% else %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+<div class="form_row">
+    <input  type="submit" value="{{ button_text }}">
+</div>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Products</h1>
+
+{% for product in products %}
+    <h2>Title - {{ product.title }}</h2>
+    <p>Category - {{ product.category }}</p>
+    <p>Description - {{ product.description }}</p>
+    <p>Image:</p>
+    <div id="image"><img src="{{product.image}}" height="100"></div>
+    <p><a href="{% url 'product_detail' product.pk %}">More</a> </p>
+    {% if user.is_authenticated %}
+    {% if perms.webapp.change_article %}
+    <p><a href="{% url 'product_update' product.pk %}">Update</a> </p>
+    {% endif %}
+    <p><a href="{% url 'product_delete' product.pk %}">Delete</a> </p>
+    {% endif %}
+{% endfor %}
+    <br>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}
