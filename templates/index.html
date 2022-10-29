@@ -5,23 +5,25 @@
 <h1>Products</h1>
 
 {% for product in products %}
-    <div class="card mb-3" style="width: 38rem; height:23rem; border: solid black; background: #FFFFF0;">
+    <div class="card mb-3, text-center" style="width: 38rem; height:25rem; border: solid black; background: #FFFFF0; ">
     <h2>Product name: {{ product.title }}</h2>
     <p>Category: {{ product.category }}</p>
     <p>Description: {{ product.description }}</p>
-    <p>Image: </p>
-        <div id="image"><img src="{{product.image}}" height="50"></div>
+        <div id="image"><img src="{{ product.image }}" height="50"></div>
 
 
-    <p><a href="{% url 'product_detail' product.pk %}">More</a> </p>
+    <p><a  href="{% url 'product_detail' product.pk %}">More</a> </p>
     {% if user.is_authenticated %}
     {% if perms.webapp.change_product %}
 
     <p><a href="{% url 'product_update' product.pk %}">Update</a></p>
-        <p><a href="{% url 'review_detail' product.pk %}">View review</a> </p>
-    {% endif %}
+        {% for review in products %}
+            <p><a href="{% url 'review_detail' review.pk %}">View review</a> </p>
+        {% endfor %}
     <p><a href="{% url 'product_delete' product.pk %}">{% bs_icon 'trash'%}</a> </p>
+        {% endif %}
     {% endif %}
+
          </div>
 {% endfor %}
 

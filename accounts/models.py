@@ -15,11 +15,6 @@ class Profile(models.Model):
         upload_to='avatars',
         verbose_name='Avatar'
     )
-    birthday = models.DateField(
-        null=True,
-        blank=True,
-        verbose_name='Date of birth'
-    )
 
     def __str__(self):
         return f'User profile {self.user.get_full_name()}'

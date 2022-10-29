@@ -49,7 +49,7 @@ class UserChangeForm(forms.ModelForm):
 class ProfileChangeForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('avatar', 'birthday')
+        fields = ('avatar',)
 
 
 class PasswordChangeForm(forms.ModelForm):

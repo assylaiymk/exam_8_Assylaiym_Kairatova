@@ -11,7 +11,7 @@ class StatusChoices(TextChoices):
 
 
 class Product(models.Model):
-    title = models.TextField(verbose_name='Title', max_length=200, null=False, blank=False)
+    title = models.TextField(verbose_name='Title', max_length=100, null=False, blank=False)
     category = models.CharField(verbose_name='Category', choices=StatusChoices.choices, max_length=200,
                                 default=StatusChoices.MEAT)
     description = models.TextField(verbose_name='Description', max_length=2000, blank=True)

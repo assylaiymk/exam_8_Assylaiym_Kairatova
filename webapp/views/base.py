@@ -8,7 +8,7 @@ class IndexView(ListView):
     model = Product
     context_object_name = 'products'
     ordering = ('-created_at',)
-    allow_empty = False
+    allow_empty = True
     paginate_by = 2
     paginate_orphans = 1
 

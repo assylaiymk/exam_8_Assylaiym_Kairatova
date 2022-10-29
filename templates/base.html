@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} Blog {% endblock %}</title>
+    <title>{% block title %} Reviewer {% endblock %}</title>
     <link rel="stylesheet" href="{% static "css/style.css"%}">
 </head>
 <body>
@@ -28,13 +28,13 @@
         <li>
             <a href="{% url 'review_add'  %}">Leave review</a>
         </li>
-
+        <li>
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <span>Hello {{ user.username }}</span>
                 <input type="submit" value="Exit">
             </form>
-
+        </li>
          <li class="auth">
         {% else %}
             <li class="auth"> <a href="{% url 'login' %}">Log in</a> </li>
