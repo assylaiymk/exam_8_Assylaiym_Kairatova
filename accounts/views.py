@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
-from accounts.forms import LoginForm, CustomUserCreationForm, UserChangeForm, ProfileChangeForm
+from accounts.forms import LoginForm, CustomUserCreationForm, UserChangeForm, ProfileChangeForm, PasswordChangeForm
 
 
 class LoginView(TemplateView):
@@ -81,3 +81,11 @@ class UserChangeView(UpdateView):
     context_object_name = 'user_obj'
 
 
+class UserPasswordChangeView(UpdateView):
+    model = get_user_model()
+    template_name = 'user_password_change.html'
+    form_class = PasswordChangeForm
+    context_object_name = 'user_obj'
+
+    def get_success_url(self):
+        return reverse('accounts:login')
