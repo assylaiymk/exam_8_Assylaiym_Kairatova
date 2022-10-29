@@ -153,3 +153,6 @@ body{
 .auth{
     width: 30%;
 }
+.card{
+    display: inline-block;
+}
