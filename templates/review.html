@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    Product - {{ product.title }}
+{% endblock %}
+
+
+{% block content %}
+
+    <p>Author - {{ review.author }}</p>
+    <p>Product - {{ review.product }}</p>
+    <p>Text - {{ review.text }}</p>
+    <p>Rate - {{ review.rating }}</p>
+
+{% if user.is_authenticated %}
+    <p><a href="{% url 'review_update' review.pk %}">Update review</a>
+    <p><a href="{% url 'review_delete' review.pk %}">Delete review</a>
+{% endif %}
+
+{% endblock %}

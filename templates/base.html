@@ -18,22 +18,29 @@
         <li><a href="{% url 'index' %}">Home</a> </li>
         {% block menu %}{% endblock %}
         {% if user.is_authenticated %}
+
         <li>
             <a href="{% url 'product_add' %}">Add product</a>
         </li>
         <li>
             <a href="{% url 'profile' user.pk %}">Profile</a>
         </li>
-            <li class="auth">
+        <li>
+            <a href="{% url 'review_add'  %}">Leave review</a>
+        </li>
+
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <span>Hello {{ user.username }}</span>
                 <input type="submit" value="Exit">
             </form>
-            </li>
+
+         <li class="auth">
         {% else %}
             <li class="auth"> <a href="{% url 'login' %}">Log in</a> </li>
+            <li class="auth"> <a href="{% url 'register' %}">Register</a> </li>
         {% endif %}
+         </li>
     </ul>
     </div>
 </nav>

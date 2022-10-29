@@ -1,23 +1,30 @@
 {% extends 'base.html' %}
-
+{% load bootstrap_icons %}
 
 {% block content %}
 <h1>Products</h1>
 
 {% for product in products %}
-    <h2>Title - {{ product.title }}</h2>
-    <p>Category - {{ product.category }}</p>
-    <p>Description - {{ product.description }}</p>
-    <p>Image:</p>
-    <div id="image"><img src="{{product.image}}" height="100"></div>
+    <div class="card mb-3" style="width: 38rem; height:23rem; border: solid black; background: #FFFFF0;">
+    <h2>Product name: {{ product.title }}</h2>
+    <p>Category: {{ product.category }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Image: </p>
+        <div id="image"><img src="{{product.image}}" height="50"></div>
+
+
     <p><a href="{% url 'product_detail' product.pk %}">More</a> </p>
     {% if user.is_authenticated %}
-    {% if perms.webapp.change_article %}
-    <p><a href="{% url 'product_update' product.pk %}">Update</a> </p>
+    {% if perms.webapp.change_product %}
+
+    <p><a href="{% url 'product_update' product.pk %}">Update</a></p>
+        <p><a href="{% url 'review_detail' product.pk %}">View review</a> </p>
     {% endif %}
-    <p><a href="{% url 'product_delete' product.pk %}">Delete</a> </p>
+    <p><a href="{% url 'product_delete' product.pk %}">{% bs_icon 'trash'%}</a> </p>
     {% endif %}
+         </div>
 {% endfor %}
+
     <br>
     {% if is_paginated %}
         {% include 'partial/pagination.html' %}

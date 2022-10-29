@@ -11,7 +11,7 @@ class Review(models.Model):
     rating = models.FloatField(verbose_name='Rating', blank=False)
 
     def __str__(self):
-        return f'{self.author} - {self.product}, {self.text}, {self.rating}'
+        return f'{self.author} - {self.product} -  {self.text} - {self.rating}'
 
     class Meta:
         verbose_name = 'Review'
