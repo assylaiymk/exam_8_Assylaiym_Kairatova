@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, BaseValidator
-from webapp.models import Product
+from webapp.models import Product, Review
 
 
 def max_length_validator(string):
@@ -43,9 +43,9 @@ class ProductForm(forms.ModelForm):
         return title
 
 
-class SearchForm(forms.Form):
-    search = forms.CharField(max_length=100, required=False, label='Find')
+class ReviewForm(forms.ModelForm):
 
+    class Meta:
+        model = Review
+        fields = ('author', 'product', 'text', 'rating')
 
-class FavoriteForm(forms.Form):
-    note = forms.CharField(max_length=50, required=True, label='Заметка')
